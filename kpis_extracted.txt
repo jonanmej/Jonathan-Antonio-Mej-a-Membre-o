@@ -1,0 +1,272 @@
+  if (isLoggedIn && activeModule === 'kpis') {
+    return (
+      <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+        {/* Navbar Superior KPIs */}
+        <header className="bg-violet-600 border-b border-violet-700 sticky top-0 z-20 shadow-md">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center h-16 gap-4">
+              <button 
+                onClick={() => setActiveModule('dashboard')}
+                className="text-violet-50 hover:text-white p-2 -ml-2 rounded-lg hover:bg-violet-500 transition-colors cursor-pointer flex-shrink-0"
+              >
+                <ArrowLeft className="w-6 h-6" />
+              </button>
+              <h1 className="font-bold text-xl text-white flex-1 truncate">Dashboard Gerencial</h1>
+              <div className="w-8 h-8 rounded-full bg-violet-500 flex items-center justify-center text-white flex-shrink-0">
+                <BarChart3 className="w-4 h-4" />
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 py-6 flex flex-col gap-6">
+          
+          {/* Fila 1: KPIs Principales (Bento Grid) */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-10 h-10 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                  <Target className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">+4.2%</span>
+              </div>
+              <p className="text-sm font-medium text-slate-500 mb-1">SLA Global</p>
+              <h2 className="text-3xl font-bold text-slate-900">98.5%</h2>
+            </div>
+
+            <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">
+                  <Activity className="w-5 h-5" />
+                </div>
+              </div>
+              <p className="text-sm font-medium text-slate-500 mb-1">Mantenimientos Mes</p>
+              <div className="flex items-baseline gap-2">
+                <h2 className="text-3xl font-bold text-slate-900">142</h2>
+                <span className="text-sm text-slate-400">/ 150</span>
+              </div>
+            </div>
+
+            <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-10 h-10 rounded-full bg-amber-50 text-amber-600 flex items-center justify-center">
+                  <Box className="w-5 h-5" />
+                </div>
+                <span className="text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded-full">3 críticos</span>
+              </div>
+              <p className="text-sm font-medium text-slate-500 mb-1">Rotura de Stock</p>
+              <h2 className="text-3xl font-bold text-slate-900">2.1%</h2>
+            </div>
+
+            <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+              <div className="flex items-center justify-between mb-3">
+                <div className="w-10 h-10 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center">
+                  <Clock className="w-5 h-5" />
+                </div>
+              </div>
+              <p className="text-sm font-medium text-slate-500 mb-1">Horas Hombre (YTD)</p>
+              <h2 className="text-3xl font-bold text-slate-900">8,450</h2>
+            </div>
+
+          </div>
+
+          {/* Fila 2: Gráficos (Simulados con Tailwind) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            
+            {/* Gráfico 1: Cumplimiento de Mantenimientos */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm flex flex-col">
+              <h3 className="font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <TrendingUp className="w-5 h-5 text-violet-500" /> Tendencia de Servicios O&M
+              </h3>
+              
+              <div className="flex-1 flex items-end gap-3 h-48 mt-auto px-2">
+                {/* Columnas Simuladas */}
+                {[
+                  { month: 'Ene', val: 40 },
+                  { month: 'Feb', val: 55 },
+                  { month: 'Mar', val: 45 },
+                  { month: 'Abr', val: 70 },
+                  { month: 'May', val: 85 },
+                  { month: 'Jun', val: 60 },
+                  { month: 'Jul', val: 95 }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex-1 flex flex-col justify-end items-center group">
+                    <div className="w-full bg-violet-100 rounded-t-sm relative flex justify-center group-hover:bg-violet-200 transition-colors" style={{ height: `${item.val}%` }}>
+                      <div className="absolute -top-8 bg-slate-800 text-white text-[10px] py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                        {item.val} serv.
+                      </div>
+                      {/* Porción completada */}
+                      <div className="w-full bg-violet-500 rounded-t-sm absolute bottom-0" style={{ height: `${item.val - 15}%` }}></div>
+                    </div>
+                    <span className="text-xs text-slate-400 mt-2 font-medium">{item.month}</span>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="flex items-center gap-4 mt-6 pt-4 border-t border-slate-100 justify-center">
+                <div className="flex items-center gap-1.5 text-xs text-slate-600">
+                  <div className="w-3 h-3 rounded-full bg-violet-500"></div> Completados
+                </div>
+                <div className="flex items-center gap-1.5 text-xs text-slate-600">
+                  <div className="w-3 h-3 rounded-full bg-violet-100"></div> Reprogramados
+                </div>
+              </div>
+            </div>
+
+            {/* Gráfico 2: Alertas Críticas por Planta */}
+            <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm flex flex-col">
+              <h3 className="font-bold text-slate-900 mb-6 flex items-center gap-2">
+                <AlertTriangle className="w-5 h-5 text-amber-500" /> Alertas Activas por Planta
+              </h3>
+
+              <div className="flex-1 flex flex-col gap-5 justify-center">
+                
+                <div>
+                  <div className="flex justify-between text-sm mb-1.5">
+                    <span className="font-medium text-slate-700">Solar Choluteca</span>
+                    <span className="text-slate-500">12 alertas</span>
+                  </div>
+                  <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div className="bg-emerald-500 h-2.5 rounded-full w-[15%]"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex justify-between text-sm mb-1.5">
+                    <span className="font-medium text-slate-700">Motores Pavana (HFO)</span>
+                    <span className="text-slate-500">45 alertas</span>
+                  </div>
+                  <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div className="bg-amber-500 h-2.5 rounded-full w-[65%]"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex justify-between text-sm mb-1.5">
+                    <span className="font-medium text-slate-700">Solar Nacaome 2</span>
+                    <span className="text-slate-500">82 alertas</span>
+                  </div>
+                  <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div className="bg-red-500 h-2.5 rounded-full w-[90%]"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div className="flex justify-between text-sm mb-1.5">
+                    <span className="font-medium text-slate-700">Valle Solar</span>
+                    <span className="text-slate-500">28 alertas</span>
+                  </div>
+                  <div className="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden">
+                    <div className="bg-emerald-500 h-2.5 rounded-full w-[30%]"></div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  // Pantalla de Login Principal
+  return (
+    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Elementos decorativos de fondo */}
+      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-teal-500/20 rounded-full blur-3xl"></div>
+
+      <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 relative z-10 border border-slate-100">
+        
+        {/* Cabecera */}
+        <div className="flex flex-col items-center mb-8">
+          <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-4 border border-emerald-100 shadow-sm">
+            <Sun className="w-8 h-8" />
+          </div>
+          <h1 className="text-2xl font-bold text-slate-900">ERP & FSM Solar</h1>
+          <p className="text-slate-500 text-sm mt-1 text-center">
+            Gestión Operativa de Plantas Fotovoltaicas y Motores HFO
+          </p>
+        </div>
+
+        {/* Formulario */}
+        <form 
+          onSubmit={(e) => {
+            e.preventDefault();
+            setIsLoggedIn(true); // Simulamos el inicio de sesión
+          }} 
+          className="space-y-5"
+        >
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
+              Correo Electrónico
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Mail className="h-5 w-5 text-slate-400" />
+              </div>
+              <input
+                type="email"
+                required
+                className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 sm:text-sm transition-all"
+                placeholder="operador@empresa.com"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-slate-700 mb-1.5">
+              Contraseña
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Lock className="h-5 w-5 text-slate-400" />
+              </div>
+              <input
+                type="password"
+                required
+                className="block w-full pl-10 pr-3 py-2.5 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 sm:text-sm transition-all"
+                placeholder="••••••••"
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between mt-2">
+            <div className="flex items-center">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                className="h-4 w-4 text-emerald-600 focus:ring-emerald-500 border-slate-300 rounded cursor-pointer"
+              />
+              <label htmlFor="remember-me" className="ml-2 block text-sm text-slate-600 cursor-pointer">
+                Recordarme
+              </label>
+            </div>
+            <div className="text-sm">
+              <a href="#" className="font-medium text-emerald-600 hover:text-emerald-500">
+                ¿Olvidaste tu contraseña?
+              </a>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-bold text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-all active:scale-[0.98] cursor-pointer mt-2"
+          >
+            Ingresar al Sistema
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </form>
+
+        {/* Footer */}
+        <div className="mt-8 flex items-center justify-center gap-2 text-xs text-slate-400">
+          <ShieldCheck className="w-4 h-4" />
+          <span>Acceso seguro y encriptado</span>
+        </div>
+      </div>
+    </div>
+  );
+}

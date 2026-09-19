@@ -1,0 +1,7 @@
+He completado la restauración integral del módulo de "Operaciones en Campo" a su estado original antes de inhabilitarse, reincorporando todos los campos, procesos y compuertas de seguridad.
+
+- **Compuerta de Geocerca (Geofencing Gate)**: Se ha restaurado la validación obligatoria por GPS (radio de 500m) antes de poder iniciar la captura de un reporte técnico.
+- **Detalles Operativos y Órdenes de Trabajo**: Reintegrada la sección superior que bloquea y muestra la distancia de la planta y las coordenadas registradas.
+- **Cola de Sincronización Offline**: Restablecida la UI para encolar reportes generados sin conexión a internet y el "banner" superior de alerta.
+- **Historial de Reportes**: Reincorporado el panel de búsqueda y descarga de PDFs previos en el Dashboard del operador.
+- **Trazado Satelital y Resumen IA**: Reactivadas las secciones de trazado poligonal en Mapbox (para servicios Fotovoltaicos) y la generación del Resumen Ejecutivo Inteligente previo a las firmas.

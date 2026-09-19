@@ -1,0 +1,21 @@
+              >
+                 {isGeneratingPDF ? (
+                   <><RefreshCw className="w-5 h-5 animate-spin" /> Generando Reporte...</>
+                 ) : (
+                   <><CheckCircle2 className="w-5 h-5" /> Generar Reporte PDF y Finalizar</>
+                 )}
+              </button>
+            </div>
+
+          </main>
+        )}
+      </div>
+    );
+
+  }
+
+  if (mustChangePasswordMode) {
+      return (
+        <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl shadow-xl p-8 max-w-md w-full relative overflow-hidden">
+            <div className="text-center mb-8">

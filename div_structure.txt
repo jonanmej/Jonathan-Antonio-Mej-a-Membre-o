@@ -1,0 +1,725 @@
+475-    return (
+476:      <div className="min-h-screen">
+477-        
+--
+479-          {showTour && (
+480:            <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4">
+481:              <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-2xl p-6 max-w-sm w-full relative animate-in zoom-in-95 duration-300">
+482-                <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2 flex items-center gap-2">
+--
+496-                </button>
+497:              </div>
+498:            </div>
+499-          )}
+--
+502-        <header className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 sticky top-0 z-20 transition-colors duration-200">
+503:          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+504:            <div className="flex justify-between items-center h-16">
+505-              {/* Logo y Título */}
+506:              <div className="flex items-center gap-2">
+507:                <div className="w-10 h-10 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center border border-emerald-100">
+508-                  <Sun className="w-6 h-6" />
+509:                </div>
+510-                <span className="font-bold text-xl text-slate-900 hidden sm:block">ERP & FSM Solar</span>
+511:              </div>
+512-
+513-              {/* Acciones de Usuario */}
+514:              <div className="flex items-center gap-4">
+515-                <button 
+--
+534-                </button>
+535:                <div className="h-8 w-px bg-slate-200 dark:bg-slate-700"></div>
+536:                <div className="flex items-center gap-3">
+537:                  <div className="w-9 h-9 rounded-full bg-emerald-100 dark:bg-emerald-900/50 flex items-center justify-center text-emerald-700 dark:text-emerald-400 font-bold text-sm">
+538-                    OP
+539:                  </div>
+540-                  <button 
+--
+546-                  </button>
+547:                </div>
+548:              </div>
+549:            </div>
+550:          </div>
+551-        </header>
+--
+553-        {/* Contenido Principal */}
+554:        <main className="flex-1 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+555-          
+556-          {/* Bienvenida y Resumen Rápido */}
+557:          <div className="mb-8">
+558-            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Hola, Operador</h1>
+559-            <p className="text-slate-500 dark:text-slate-400 mt-1">Aquí está el resumen operativo de hoy para plantas y mantenimientos.</p>
+560:          </div>
+561-
+562-          {/* Grid de Módulos (Bento UI) */}
+563:          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+564-            
+565-            {/* Módulo 1: Operaciones en Campo (Destacado) */}
+566:            <div 
+567-              onClick={() => setActiveModule('field_ops')}
+--
+569-            >
+570:              <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+571-                <MapPin className="w-6 h-6" />
+572:              </div>
+573-              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Operaciones en Campo</h2>
+--
+576-              </p>
+577:              <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-sm font-medium text-emerald-600">
+578-                <span>Ir al módulo</span>
+579-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+580:              </div>
+581:            </div>
+582-
+583-            {/* Módulo 2: Clientes y Plantas */}
+584:            <div 
+585-              onClick={() => setActiveModule('clients_plants')}
+--
+587-            >
+588:              <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+589-                <Building2 className="w-6 h-6" />
+590:              </div>
+591-              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Clientes y Plantas</h2>
+--
+594-              </p>
+595:              <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-sm font-medium text-blue-600">
+596-                <span>Ir al módulo</span>
+597-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+598:              </div>
+599:            </div>
+600-
+601-            {/* Módulo 3: Inventario */}
+602:            <div 
+603-              onClick={() => setActiveModule('inventory')}
+--
+605-            >
+606:              <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+607-                <Package className="w-6 h-6" />
+608:              </div>
+609-              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Control de Inventarios</h2>
+--
+612-              </p>
+613:              <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-sm font-medium text-amber-600">
+614-                <span>Ir al módulo</span>
+615-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+616:              </div>
+617:            </div>
+618-
+619-            {/* Módulo 4: Recursos Humanos */}
+620:            <div 
+621-              onClick={() => setActiveModule('hr')}
+--
+623-            >
+624:              <div className="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+625-                <Users className="w-6 h-6" />
+626:              </div>
+627-              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Recursos Humanos</h2>
+--
+630-              </p>
+631:              <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-sm font-medium text-indigo-600">
+632-                <span>Ir al módulo</span>
+633-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+634:              </div>
+635:            </div>
+636-
+637-            {/* Módulo 5: Dashboard KPIs */}
+638:            <div 
+639-              onClick={() => setActiveModule('kpis')}
+--
+641-            >
+642:              <div className="w-12 h-12 rounded-xl bg-violet-50 text-violet-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+643-                <BarChart3 className="w-6 h-6" />
+644:              </div>
+645-              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">Dashboard de KPIs</h2>
+--
+648-              </p>
+649:              <div className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-sm font-medium text-violet-600">
+650-                <span>Ir al módulo</span>
+651-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+652:              </div>
+653:            </div>
+654-
+655:          </div>
+656-                    {/* Alertas Próximas (Mantenimientos < 7 días) */}
+657:          <div className="mt-12">
+658:            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+659:              <div className="flex items-center gap-2">
+660-                <Bell className="w-6 h-6 text-rose-600" />
+661-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Alertas Próximas</h2>
+662:              </div>
+663:              <div className="flex items-center gap-3">
+664:                <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-lg border border-slate-200 dark:border-slate-700">
+665-                  <button 
+--
+676-                  </button>
+677:                </div>
+678-                <span className="text-xs font-semibold bg-rose-100 dark:bg-rose-900/40 text-rose-700 dark:text-rose-400 px-3 py-1.5 rounded-full border border-rose-200 dark:border-rose-800/50 hidden sm:inline-block">
+--
+680-                </span>
+681:              </div>
+682:            </div>
+683-
+--
+686-            ) : (
+687:            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+688-              {isLoadingAlerts ? (
+689-                <>
+690:                  <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-5 flex gap-4 items-start relative overflow-hidden">
+691:                    <div className="w-12 h-12 rounded-xl bg-slate-200 dark:bg-slate-700 animate-pulse shrink-0"></div>
+692:                    <div className="flex-1 space-y-3 mt-1">
+693:                      <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-3/4 animate-pulse"></div>
+694:                      <div className="h-3 bg-slate-200 dark:bg-slate-700 rounded w-1/2 animate-pulse"></div>
+695:                      <div className="h-3 bg-slate-200 dark:bg-slate-700 rounded w-5/6 animate-pulse mt-4"></div>
+696:                    </div>
+697:                  </div>
+698:                  <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm p-5 flex gap-4 items-start relative overflow-hidden">
+699:                    <div className="w-12 h-12 rounded-xl bg-slate-200 dark:bg-slate-700 animate-pulse shrink-0"></div>
+700:                    <div className="flex-1 space-y-3 mt-1">
+701:                      <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-2/3 animate-pulse"></div>
+702:                      <div className="h-3 bg-slate-200 dark:bg-slate-700 rounded w-1/2 animate-pulse"></div>
+703:                      <div className="h-3 bg-slate-200 dark:bg-slate-700 rounded w-3/4 animate-pulse mt-4"></div>
+704:                    </div>
+705:                  </div>
+706-                </>
+--
+708-                <>
+709:                  <div className="bg-white dark:bg-slate-800 rounded-2xl border border-rose-200 dark:border-rose-900/50 shadow-sm p-5 flex gap-4 items-start relative overflow-hidden group hover:shadow-md hover:border-rose-300 transition-all">
+710:                    <div className="absolute top-0 left-0 w-1.5 h-full bg-rose-500"></div>
+711:                    <div className="w-12 h-12 rounded-xl bg-rose-50 flex items-center justify-center text-rose-600 shrink-0">
+712-                      <AlertTriangle className="w-6 h-6" />
+713:                    </div>
+714:                    <div className="flex-1">
+715-                      <h3 className="font-bold text-slate-900 dark:text-white text-base">Planta Solar Choluteca</h3>
+716-                      <p className="text-sm text-slate-500 mt-0.5">Limpieza de Paneles (Preventivo)</p>
+717:                      <div className="flex items-center gap-2 mt-4">
+718-                        <Calendar className="w-4 h-4 text-rose-500" />
+719-                        <span className="text-sm font-semibold text-rose-600">Vence en 2 días (04 Sep)</span>
+720:                      </div>
+721:                    </div>
+722-                    <button className="text-xs font-bold text-rose-700 bg-rose-50 px-3 py-2 rounded-lg hover:bg-rose-100 transition-colors border border-rose-100 cursor-pointer">
+--
+724-                    </button>
+725:                  </div>
+726-
+727:                  <div className="bg-white dark:bg-slate-800 rounded-2xl border border-amber-200 dark:border-amber-900/50 shadow-sm p-5 flex gap-4 items-start relative overflow-hidden group hover:shadow-md hover:border-amber-300 transition-all">
+728:                    <div className="absolute top-0 left-0 w-1.5 h-full bg-amber-500"></div>
+729:                    <div className="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600 shrink-0">
+730-                      <Clock className="w-6 h-6" />
+731:                    </div>
+732:                    <div className="flex-1">
+733-                      <h3 className="font-bold text-slate-900 dark:text-white text-base">Planta Nacaome 2</h3>
+734-                      <p className="text-sm text-slate-500 mt-0.5">Revisión de Inversores (Preventivo)</p>
+735:                      <div className="flex items-center gap-2 mt-4">
+736-                        <Calendar className="w-4 h-4 text-amber-500" />
+737-                        <span className="text-sm font-semibold text-amber-600">Vence en 5 días (07 Sep)</span>
+738:                      </div>
+739:                    </div>
+740-                    <button className="text-xs font-bold text-amber-700 bg-amber-50 px-3 py-2 rounded-lg hover:bg-amber-100 transition-colors border border-amber-100 cursor-pointer">
+--
+742-                    </button>
+743:                  </div>
+744-                </>
+745-              )}
+746:            </div>
+747-            )}
+748:          </div>
+749-
+--
+751-          {pendingQueue.length > 0 && (
+752:            <div className="mt-12">
+753:              <div className="flex items-center justify-between mb-6">
+754:                <div className="flex items-center gap-2">
+755-                  <CloudOff className="w-6 h-6 text-amber-500" />
+756-                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Cola de Sincronización</h2>
+757:                </div>
+758:                <div className="flex items-center gap-3">
+759-                  <span className="text-xs font-semibold bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-400 px-3 py-1.5 rounded-full border border-amber-200 dark:border-amber-800/50">
+--
+768-                  </button>
+769:                </div>
+770:              </div>
+771-              
+772:              <div className="bg-white dark:bg-slate-800 rounded-2xl border border-amber-200 dark:border-amber-900/50 shadow-sm overflow-hidden">
+773-                <ul className="divide-y divide-amber-100 dark:divide-amber-900/30">
+--
+775-                    <li key={report.id} className="p-4 sm:p-6 hover:bg-amber-50/50 dark:hover:bg-slate-700/50 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+776:                      <div>
+777-                        <h3 className="font-semibold text-slate-900 dark:text-white">{report.fileName}</h3>
+--
+779-                        <p className="text-xs text-slate-400 mt-1">{new Date(report.date).toLocaleString()}</p>
+780:                      </div>
+781:                      <div className="flex items-center gap-3">
+782-                        <button 
+--
+787-                        </button>
+788:                      </div>
+789-                    </li>
+--
+791-                </ul>
+792:              </div>
+793:            </div>
+794-          )}
+--
+796-          {/* Historial de Reportes */}
+797:          <div className="mt-12">
+798:            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+799:              <div className="flex items-center gap-2">
+800-                <History className="w-6 h-6 text-slate-800 dark:text-white" />
+801-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Historial de Reportes</h2>
+802:              </div>
+803:              <div className="flex items-center gap-3">
+804:                <div className="relative">
+805-                  <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+--
+812-                  />
+813:                </div>
+814-                {!isOnline && (
+815:                  <div className="flex items-center gap-2 text-xs font-medium text-amber-600 bg-amber-50 px-3 py-1.5 rounded-full border border-amber-200">
+816-                    <WifiOff className="w-4 h-4" /> Sin conexión
+817:                  </div>
+818-                )}
+819:              </div>
+820:            </div>
+821-            
+822-            {reportHistory.length > 0 ? (
+823:              <div className="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden">
+824-                <ul className="divide-y divide-slate-100 dark:divide-slate-700">
+--
+826-                    <li key={idx} className="p-4 sm:p-6 hover:bg-slate-50 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+827:                      <div>
+828-                        <h3 className="font-semibold text-slate-900">{report.fileName}</h3>
+--
+830-                        <p className="text-xs text-slate-400 mt-1">{new Date(report.date).toLocaleString()}</p>
+831:                      </div>
+832:                      <div className="flex items-center gap-3">
+833-                        <button 
+--
+854-                        )}
+855:                      </div>
+856-                    </li>
+--
+858-                </ul>
+859:              </div>
+860-            ) : (
+861:              <div className="bg-white rounded-2xl border border-slate-200 border-dashed p-8 text-center">
+862-                <FileText className="w-8 h-8 text-slate-300 mx-auto mb-3" />
+863-                <p className="text-slate-500">No hay reportes generados recientemente.</p>
+864:              </div>
+865-            )}
+866:          </div>
+867:        </main>
+868-
+869:      </div>
+870-    );
+--
+875-    return (
+876:      <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+877-        {/* Navbar Superior FSM */}
+--
+880-          {isUploading && uploadProgress !== null && (
+881:            <div className="absolute top-0 left-0 w-full h-1 bg-emerald-800 z-50">
+882:              <div 
+883-                className="h-full bg-emerald-300 transition-all duration-300 ease-out"
+884-                style={{ width: `${uploadProgress}%` }}
+885:              ></div>
+886:            </div>
+887-          )}
+888-          {isUploading && (
+889:            <div className="absolute top-full left-0 w-full bg-emerald-700 text-emerald-50 text-[10px] font-bold px-4 py-1 flex items-center justify-between shadow-sm animate-in slide-in-from-top-1 z-10">
+890-              <span className="flex items-center gap-1"><RefreshCw className="w-3 h-3 animate-spin" /> Subiendo {uploadQueue} imagen(es)...</span>
+891-              <span>{Math.round(uploadProgress || 0)}%</span>
+892:            </div>
+893-          )}
+894:          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+895:            <div className="flex items-center h-16 gap-4">
+896-              <button 
+--
+902-              <h1 className="font-bold text-xl text-white flex-1 truncate">Nuevo Reporte</h1>
+903:              <div className="w-8 h-8 rounded-full bg-emerald-500 flex items-center justify-center text-white flex-shrink-0">
+904-                <FileText className="w-4 h-4" />
+905:              </div>
+906:            </div>
+907:          </div>
+908-        </header>
+--
+912-        {pendingQueue.length > 0 && (
+913:          <div className="bg-amber-500 text-white text-xs font-medium text-center py-2 flex items-center justify-center gap-2 shadow w-full sticky top-16 z-20">
+914-            <CloudOff className="w-4 h-4" />
+--
+922-            </button>
+923:          </div>
+924-        )}
+--
+927-        {!isLocationVerified && (
+928:          <div className="flex-1 w-full max-w-xl mx-auto px-4 py-12 flex flex-col items-center justify-center animate-in fade-in zoom-in duration-500">
+929:            <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-8 w-full text-center relative overflow-hidden">
+930:              <div className="absolute top-0 left-0 w-full h-2 bg-emerald-500"></div>
+931:              <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
+932-                <MapPin className="w-8 h-8 text-emerald-600" />
+933:              </div>
+934-              <h2 className="text-2xl font-bold text-slate-800 mb-2">Verificación de Planta</h2>
+--
+948-              {geofenceError && (
+949:                <div className="bg-rose-50 text-rose-600 text-sm py-2 px-3 rounded-lg border border-rose-200 mb-4 text-left flex items-start gap-2">
+950-                  <AlertTriangle className="w-5 h-5 shrink-0" />
+951-                  <span>{geofenceError}</span>
+952:                </div>
+953-              )}
+--
+982-              )}
+983:            </div>
+984:          </div>
+985-        )}
+--
+988-        {isLocationVerified && (
+989:          <div className="flex-1 w-full max-w-3xl mx-auto px-4 sm:px-6 py-6 bg-slate-50 flex flex-col">
+990-
+991-          {!isGeneratingPDF && (
+992:            <div className="flex bg-white rounded-xl shadow-sm border border-slate-200 p-1 mb-6 shrink-0">
+993-              <button
+--
+1010-              </button>
+1011:            </div>
+1012-          )}
+1013:          <main id="fsm-report-container" className="flex-1 space-y-6">
+1014-          
+1015:          <div className={isGeneratingPDF || fsmTab === 'detalles' ? 'block space-y-6' : 'hidden'}>
+1016-          {/* SECCIÓN 1: Programación, GPS y Planta */}
+1017-          <section className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+1018:            <div className="px-5 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between">
+1019:              <div className="flex items-center gap-2">
+1020-                <Navigation className="w-5 h-5 text-emerald-600" />
+1021-                <h2 className="font-semibold text-slate-800">Orden de Trabajo y Ubicación</h2>
+1022:              </div>
+1023-              <span className="text-xs font-bold bg-amber-100 text-amber-700 px-2 py-1 rounded flex items-center gap-1 border border-amber-200">
+--
+1026-              </span>
+1027:            </div>
+1028-            
+1029:            <div className="p-5 space-y-5">
+1030-              {/* Integración con futuro módulo de Programación / Scheduling */}
+1031:              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pb-5 border-b border-slate-100 mb-2">
+1032:                <div>
+1033-                  <label className="block text-xs font-medium text-slate-500 mb-1">ID Orden (Agenda)</label>
+1034-                  <input type="text" value="WO-2026-0895" disabled className="w-full bg-slate-100 border border-slate-200 rounded-lg p-2.5 text-sm text-slate-600 font-mono shadow-inner" />
+1035:                </div>
+1036:                <div>
+1037-                  <label className="block text-xs font-medium text-slate-500 mb-1">Inicio Programado</label>
+1038-                  <input type="text" value="30 Ago 2026, 08:00 AM" disabled className="w-full bg-slate-100 border border-slate-200 rounded-lg p-2.5 text-sm text-slate-600 shadow-inner" />
+1039:                </div>
+1040:                <div>
+1041-                  <label className="block text-xs font-bold text-emerald-700 mb-1">Inicio Real del Trabajo</label>
+1042:                  <div className="relative">
+1043-                    <Clock className="w-4 h-4 text-emerald-600 absolute left-3 top-1/2 -translate-y-1/2" />
+--
+1048-                    />
+1049:                  </div>
+1050-                  <p className="text-[10px] text-slate-400 mt-1">Registra el arranque de la actividad</p>
+1051:                </div>
+1052:              </div>
+1053-
+1054-              {/* Selector de Planta */}
+1055:              <div>
+1056-                <label className="block text-sm font-medium text-slate-700 mb-2">Planta Asignada</label>
+--
+1062-                </select>
+1063:              </div>
+1064-
+1065-              {/* Botón GPS */}
+1066:              <div>
+1067-                <label className="block text-sm font-medium text-slate-700 mb-2">Check-in de Coordenadas</label>
+--
+1081-                    {isFetchingGps ? (
+1082:                      <div className="w-6 h-6 border-2 border-emerald-600 border-t-transparent rounded-full animate-spin"></div>
+1083-                    ) : (
+--
+1088-                ) : (
+1089:                  <div className="w-full border border-emerald-200 bg-emerald-50 rounded-xl p-4 flex items-center justify-between">
+1090:                    <div className="flex items-center gap-3">
+1091:                      <div className="w-10 h-10 bg-emerald-200/50 rounded-full flex items-center justify-center text-emerald-700">
+1092-                        <CheckCircle2 className="w-6 h-6" />
+1093:                      </div>
+1094:                      <div>
+1095-                        <p className="font-semibold text-emerald-900">Ubicación Registrada</p>
+1096-                        <p className="text-sm text-emerald-700">{gpsLocation}</p>
+1097:                      </div>
+1098:                    </div>
+1099-                    <button onClick={() => setGpsLocation(null)} className="text-emerald-600 text-sm font-medium underline hover:text-emerald-800 cursor-pointer">
+--
+1101-                    </button>
+1102:                  </div>
+1103-                )}
+1104:              </div>
+1105:            </div>
+1106-          </section>
+--
+1109-          <section className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+1110:            <div className="px-5 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2">
+1111-              <FileText className="w-5 h-5 text-emerald-600" />
+1112-              <h2 className="font-semibold text-slate-800">Detalles Operativos</h2>
+1113:            </div>
+1114:            <div className="p-5 space-y-4">
+1115-              {/* Selector de Categoría Principal */}
+1116:              <div>
+1117-                <label className="block text-sm font-medium text-slate-700 mb-2">Categoría del Servicio</label>
+--
+1131-                </select>
+1132:              </div>
+1133-
+--
+1135-              {fsmCategory && (
+1136:                <div>
+1137-                  <label className="block text-sm font-medium text-slate-700 mb-2">Tipo de Servicio</label>
+--
+1150-                  </select>
+1151:                </div>
+1152-              )}
+--
+1155-              {fsmCategory && fsmService && SERVICE_CATEGORIES[fsmCategory].services.find(s => s.id === fsmService)?.subTypes && (
+1156:                <div>
+1157-                  <label className="block text-sm font-medium text-slate-700 mb-2">Clasificación</label>
+1158:                  <div className="grid grid-cols-3 gap-2">
+1159-                    {SERVICE_CATEGORIES[fsmCategory].services.find(s => s.id === fsmService)?.subTypes?.map((sub) => (
+--
+1171-                    ))}
+1172:                  </div>
+1173:                </div>
+1174-              )}
+--
+1194-              {((fsmCategory !== 'fotovoltaico' && fsmCategory !== 'gps' && fsmCategory !== 'chemitek' && fsmCategory !== 'visitas') || isInspectionUnlocked) && (
+1195:                <div className="space-y-6 animate-in slide-in-from-bottom-4 duration-500">
+1196-                  {fsmCategory === 'fotovoltaico' && fsmService === 'fv_inst' ? (
+--
+1222-              ) : (
+1223:                <div>
+1224-                  <label className="block text-sm font-medium text-slate-700 mb-2">Observaciones / Hallazgos</label>
+--
+1229-                  ></textarea>
+1230:                </div>
+1231-              )}
+1232:                </div>
+1233-              )}
+1234:            </div>
+1235-          </section>
+1236-
+1237:          </div>
+1238-          {((fsmCategory !== 'fotovoltaico' && fsmCategory !== 'gps') || isInspectionUnlocked) && (
+1239:            <div className="space-y-6 animate-in slide-in-from-bottom-6 duration-700">
+1240-              {/* SECCIÓN 3: Evidencias y Firma (Oculto si es Formulario de Instalación, Limpieza FV, Preventivo o Correctivo) */}
+--
+1242-            <>
+1243:            <div className={isGeneratingPDF || fsmTab === 'evidencias' ? 'block' : 'hidden'}>
+1244-              <section className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+1245:                <div className="px-5 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2">
+1246-                  <Camera className="w-5 h-5 text-emerald-600" />
+1247-                  <h2 className="font-semibold text-slate-800">Registro Fotográfico</h2>
+1248:                </div>
+1249:                <div className="p-5">
+1250:                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+1251-                    <MultiImageCategory label="Antes" theme="slate" />
+--
+1253-                    <MultiImageCategory label="Después" theme="emerald" />
+1254:                  </div>
+1255:                </div>
+1256-              </section>
+1257:            </div>
+1258-
+1259:            <div className={isGeneratingPDF || fsmTab === 'firmas' ? 'block' : 'hidden'}>
+1260-              <section className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mt-6">
+1261:                <div className="px-5 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2">
+1262-                  <PenTool className="w-5 h-5 text-emerald-600" />
+1263-                  <h2 className="font-semibold text-slate-800">Firmas y Cierre</h2>
+1264:                </div>
+1265:                <div className="p-5">
+1266-              {/* Firmas */}
+1267:              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+1268:                <div className="space-y-3">
+1269-                  <label className="block text-sm font-medium text-slate-700 flex items-center gap-2"><PenTool className="w-4 h-4 text-emerald-600" /> Firma del Supervisor</label>
+1270-                  <input type="text" readOnly value={currentUser} className="w-full bg-slate-100 border border-slate-200 text-slate-700 rounded-xl px-4 py-2 text-sm font-medium cursor-not-allowed focus:outline-none" placeholder="Nombre del supervisor" />
+1271:                  <div className={`w-full h-40 border-2 border-dashed rounded-xl relative overflow-hidden cursor-crosshair mt-2 transition-all ${signatureErrorSupervisor ? 'bg-rose-50 border-rose-500 shadow-[0_0_15px_rgba(225,29,72,0.3)] animate-pulse' : 'bg-slate-50 border-slate-200'}`}>
+1272-                    <SignatureCanvas 
+--
+1278-                    />
+1279:                    <div className="absolute bottom-2 right-2 flex gap-2 z-10">
+1280-                      <button type="button" onClick={() => sigPadSupervisor.current?.clear()} className="text-xs px-2 py-1 bg-white border border-slate-200 rounded shadow-sm text-slate-600 hover:bg-slate-50 cursor-pointer">Limpiar</button>
+1281:                    </div>
+1282:                  </div>
+1283:                </div>
+1284:                <div className="space-y-3">
+1285-                  <label className="block text-sm font-medium text-slate-700 flex items-center gap-2"><UserCheck className="w-4 h-4 text-emerald-600" /> Firma del Cliente (Recibe)</label>
+1286-                  <input type="text" value={clientName} onChange={(e) => setClientName(e.target.value)} className="w-full bg-white border border-slate-200 text-slate-900 rounded-xl px-4 py-2 text-sm focus:ring-2 focus:ring-emerald-500/50 focus:border-emerald-500 outline-none transition-all" placeholder="Nombre y apellido del cliente" />
+1287:                  <div className={`w-full h-40 border-2 border-dashed rounded-xl relative overflow-hidden cursor-crosshair mt-2 transition-all ${signatureErrorClient ? 'bg-rose-50 border-rose-500 shadow-[0_0_15px_rgba(225,29,72,0.3)] animate-pulse' : 'bg-slate-50 border-slate-200'}`}>
+1288-                    <SignatureCanvas 
+--
+1294-                    />
+1295:                    <div className="absolute bottom-2 right-2 flex gap-2 z-10">
+1296-                      <button type="button" onClick={() => sigPadClient.current?.clear()} className="text-xs px-2 py-1 bg-white border border-slate-200 rounded shadow-sm text-slate-600 hover:bg-slate-50 cursor-pointer">Limpiar</button>
+1297:                    </div>
+1298:                  </div>
+1299:                </div>
+1300:              </div>
+1301:              </div>
+1302-              </section>
+1303:            </div>
+1304-            </>
+--
+1306-
+1307:          <div className={isGeneratingPDF || fsmTab === 'evidencias' ? 'block' : 'hidden'}>
+1308-          {/* SECCIÓN: Layout Satelital (MAPBOX) - Solo Fotovoltaico */}
+--
+1310-            <section className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-6">
+1311:              <div className="px-5 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center gap-2">
+1312-                <MapIcon className="w-5 h-5 text-emerald-600" />
+1313-                <h2 className="font-semibold text-slate-800">Trazado de Zonas Trabajadas (Layout)</h2>
+1314:              </div>
+1315:              <div className="p-5 space-y-4">
+1316-                <p className="text-sm text-slate-600">
+--
+1318-                </p>
+1319:                <div className="w-full h-72 bg-slate-100 border border-slate-200 rounded-xl relative flex flex-col overflow-hidden shadow-inner group">
+1320-                    <Map
+--
+1334-                      </Marker>
+1335:                      <div className="absolute top-2 right-2 bg-black/50 backdrop-blur-sm text-white px-3 py-1.5 rounded-lg text-xs font-medium border border-white/10">
+1336-                        Vista Satelital: Choluteca
+1337:                      </div>
+1338-                    </Map>
+1339:                </div>
+1340:              </div>
+1341-            </section>
+1342-          )}
+1343:          </div>
+1344-
+1345:          <div className={isGeneratingPDF || fsmTab === 'firmas' ? 'block' : 'hidden'}>
+1346-          {/* Resumen Ejecutivo IA */}
+1347-          <section className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl border border-indigo-100 shadow-sm overflow-hidden mb-6">
+1348:            <div className="px-5 py-4 border-b border-indigo-100/50 flex items-center justify-between">
+1349:              <div className="flex items-center gap-2">
+1350-                <Sun className="w-5 h-5 text-indigo-600" />
+1351-                <h2 className="font-semibold text-indigo-900">Resumen Ejecutivo Inteligente</h2>
+1352:              </div>
+1353-              <span className="text-xs font-bold bg-indigo-100 text-indigo-700 px-2 py-1 rounded border border-indigo-200">
+--
+1355-              </span>
+1356:            </div>
+1357:            <div className="p-5">
+1358-              {!aiSummary ? (
+1359:                <div className="text-center py-4">
+1360-                  <p className="text-sm text-indigo-700/70 mb-4">Genera un análisis profesional y consolidado de todos los hallazgos reportados para el cliente final.</p>
+--
+1368-                  </button>
+1369:                </div>
+1370-              ) : (
+1371:                <div className="space-y-3 animate-in fade-in duration-300">
+1372-                  <textarea 
+--
+1377-                  <p className="text-[10px] text-indigo-500/80 text-right">Puedes editar el texto generado antes de exportar el PDF.</p>
+1378:                </div>
+1379-              )}
+1380:            </div>
+1381-          </section>
+1382-
+1383:          </div>
+1384-          {/* Botones de Envío y Exportación */}
+1385:          <div className="pb-12 pt-2 space-y-3 flex flex-col items-center">
+1386-            <button onClick={handleSyncCloud} className="w-full flex justify-center items-center gap-2 py-4 px-4 border border-transparent rounded-xl shadow-lg text-base font-bold text-white bg-emerald-600 hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-emerald-500 transition-all active:scale-[0.98] cursor-pointer">
+--
+1402-            </p>
+1403:          </div>
+1404:        </main>
+1405:        </div>
+1406-        )}
+1407:      </div>
+1408-    );
+--
+1431-  return (
+1432:    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4 relative overflow-hidden">
+1433-      {/* Elementos decorativos de fondo */}
+1434:      <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl"></div>
+1435:      <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-teal-500/20 rounded-full blur-3xl"></div>
+1436-
+1437:      <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 relative z-10 border border-slate-100">
+1438-        
+1439-        {/* Cabecera */}
+1440:        <div className="flex flex-col items-center mb-8">
+1441:          <div className="w-16 h-16 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-4 border border-emerald-100 shadow-sm">
+1442-            <Sun className="w-8 h-8" />
+1443:          </div>
+1444-          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">ERP & FSM Solar</h1>
+--
+1447-          </p>
+1448:        </div>
+1449-
+--
+1459-        >
+1460:          <div>
+1461-            <label className="block text-sm font-medium text-slate-700 mb-1.5">
+--
+1463-            </label>
+1464:            <div className="relative">
+1465:              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+1466-                <Mail className="h-5 w-5 text-slate-400" />
+1467:              </div>
+1468-              <input
+--
+1475-              />
+1476:            </div>
+1477:          </div>
+1478-
+1479:          <div>
+1480-            <label className="block text-sm font-medium text-slate-700 mb-1.5">
+--
+1482-            </label>
+1483:            <div className="relative">
+1484:              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+1485-                <Lock className="h-5 w-5 text-slate-400" />
+1486:              </div>
+1487-              <input
+--
+1492-              />
+1493:            </div>
+1494:          </div>
+1495-
+1496:          <div className="flex items-center justify-between mt-2">
+1497:            <div className="flex items-center">
+1498-              <input
+--
+1506-              </label>
+1507:            </div>
+1508:            <div className="text-sm">
+1509-              <a href="#" className="font-medium text-emerald-600 hover:text-emerald-500">
+--
+1511-              </a>
+1512:            </div>
+1513:          </div>
+1514-
+--
+1524-        {/* Footer */}
+1525:        <div className="mt-8 flex items-center justify-center gap-2 text-xs text-slate-400">
+1526-          <ShieldCheck className="w-4 h-4" />
+1527-          <span>Acceso seguro y encriptado</span>
+1528:        </div>
+1529:      </div>
+1530-      
+--
+1532-      {isLogoutModalOpen && (
+1533:        <div className="fixed inset-0 z-[200] bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200">
+1534:          <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-200">
+1535:            <div className="p-6">
+1536:              <div className="w-12 h-12 bg-rose-100 dark:bg-rose-900/30 text-rose-600 rounded-full flex items-center justify-center mb-4">
+1537-                <LogOut className="w-6 h-6" />
+1538:              </div>
+1539-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">¿Cerrar sesión?</h3>
+--
+1542-              </p>
+1543:            </div>
+1544:            <div className="px-6 py-4 bg-slate-50 dark:bg-slate-800/50 flex items-center justify-end gap-3">
+1545-              <button 
+--
+1559-              </button>
+1560:            </div>
+1561:          </div>
+1562:        </div>
+1563-      )}
+1564:    </div>
+1565-  );

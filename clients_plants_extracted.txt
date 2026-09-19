@@ -1,0 +1,195 @@
+  if (isLoggedIn && activeModule === 'clients_plants') {
+    return (
+      <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+        {/* Navbar Superior Clientes */}
+        <header className="bg-blue-600 border-b border-blue-700 sticky top-0 z-20 shadow-md">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center h-16 gap-4">
+              <button 
+                onClick={() => setActiveModule('dashboard')}
+                className="text-blue-50 hover:text-white p-2 -ml-2 rounded-lg hover:bg-blue-500 transition-colors cursor-pointer flex-shrink-0"
+              >
+                <ArrowLeft className="w-6 h-6" />
+              </button>
+              <h1 className="font-bold text-xl text-white flex-1 truncate">Clientes y Plantas</h1>
+              <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white flex-shrink-0">
+                <Building2 className="w-4 h-4" />
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 py-6 flex flex-col gap-6">
+          
+          {/* Controles de Búsqueda y Tabs */}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="relative w-full sm:max-w-md">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+              <input 
+                type="text" 
+                placeholder="Buscar planta, cliente o ID de contrato..." 
+                className="w-full pl-10 pr-4 py-2 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all shadow-sm"
+              />
+            </div>
+            
+            <div className="flex bg-slate-200/60 p-1 rounded-xl w-full sm:w-auto">
+              <button 
+                onClick={() => setClientsTab('list')}
+                className={`flex-1 sm:px-6 py-2 rounded-lg font-medium text-sm flex items-center justify-center gap-2 transition-all cursor-pointer ${clientsTab === 'list' ? 'bg-white text-blue-700 shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
+              >
+                <List className="w-4 h-4" /> Lista
+              </button>
+              <button 
+                onClick={() => setClientsTab('map')}
+                className={`flex-1 sm:px-6 py-2 rounded-lg font-medium text-sm flex items-center justify-center gap-2 transition-all cursor-pointer ${clientsTab === 'map' ? 'bg-white text-blue-700 shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
+              >
+                <MapIcon className="w-4 h-4" /> Mapa
+              </button>
+            </div>
+          </div>
+
+          {/* Vista de Lista */}
+          {clientsTab === 'list' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              
+              {/* Tarjeta 1 */}
+              <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+                      <Sun className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-slate-900">Planta Solar Choluteca</h3>
+                      <p className="text-xs text-slate-500">ID: SOL-001 • Cliente: EcoEnergy S.A.</p>
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full text-xs font-semibold border border-emerald-200">
+                    <CheckCircle2 className="w-3 h-3" /> Óptimo
+                  </span>
+                </div>
+                
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-slate-500">Tipo de Planta</span>
+                    <span className="font-medium text-slate-700">Fotovoltaica (10 MW)</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-slate-500">Contrato O&M</span>
+                    <span className="font-medium text-slate-700">Vigente (Exp. Nov 2026)</span>
+                  </div>
+                </div>
+
+                <div className="flex gap-2 pt-4 border-t border-slate-100">
+                  <button className="flex-1 bg-blue-50 text-blue-700 py-2 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors cursor-pointer">
+                    Ver Detalles
+                  </button>
+                  <button className="flex-1 bg-white border border-slate-200 text-slate-700 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors cursor-pointer">
+                    Historial FSM
+                  </button>
+                </div>
+              </div>
+
+              {/* Tarjeta 2 */}
+              <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-slate-600">
+                      <Zap className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-slate-900">Planta Pavana (Motores)</h3>
+                      <p className="text-xs text-slate-500">ID: HFO-042 • Cliente: Lufussa</p>
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center gap-1 bg-amber-50 text-amber-700 px-2.5 py-1 rounded-full text-xs font-semibold border border-amber-200">
+                    <Wrench className="w-3 h-3" /> Mantenimiento
+                  </span>
+                </div>
+                
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-slate-500">Tipo de Planta</span>
+                    <span className="font-medium text-slate-700">Motor de Combustión HFO</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-slate-500">Contrato O&M</span>
+                    <span className="font-medium text-slate-700">Vigente (Exp. Ene 2025)</span>
+                  </div>
+                </div>
+
+                <div className="flex gap-2 pt-4 border-t border-slate-100">
+                  <button className="flex-1 bg-blue-50 text-blue-700 py-2 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors cursor-pointer">
+                    Ver Detalles
+                  </button>
+                  <button className="flex-1 bg-white border border-slate-200 text-slate-700 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors cursor-pointer">
+                    Historial FSM
+                  </button>
+                </div>
+              </div>
+
+              {/* Tarjeta 3 */}
+              <div className="bg-white border border-red-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-red-500"></div>
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center text-orange-600">
+                      <Sun className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-slate-900">Planta Nacaome 2</h3>
+                      <p className="text-xs text-slate-500">ID: SOL-088 • Cliente: Energía del Sur</p>
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center gap-1 bg-red-50 text-red-700 px-2.5 py-1 rounded-full text-xs font-semibold border border-red-200">
+                    <AlertTriangle className="w-3 h-3" /> Alerta Limpieza
+                  </span>
+                </div>
+                
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-slate-500">Tipo de Planta</span>
+                    <span className="font-medium text-slate-700">Fotovoltaica (20 MW)</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-slate-500">Contrato O&M</span>
+                    <span className="font-medium text-red-600">Expirado / En Revisión</span>
+                  </div>
+                </div>
+
+                <div className="flex gap-2 pt-4 border-t border-slate-100">
+                  <button className="flex-1 bg-blue-50 text-blue-700 py-2 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors cursor-pointer">
+                    Ver Detalles
+                  </button>
+                  <button className="flex-1 bg-white border border-slate-200 text-slate-700 py-2 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors cursor-pointer">
+                    Historial FSM
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          )}
+
+          {/* Vista de Mapa (Mockup) */}
+          {clientsTab === 'map' && (
+            <div className="flex-1 w-full min-h-[400px] bg-blue-50 border border-slate-200 rounded-2xl relative overflow-hidden flex items-center justify-center shadow-inner mt-2">
+              {/* Fake Grid Pattern for Map */}
+              <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(#3b82f6 1.5px, transparent 1.5px)', backgroundSize: '24px 24px' }}></div>
+              
+              {/* Fake Map Pins */}
+              <div className="absolute top-[30%] left-[40%] group cursor-pointer z-10">
+                <MapPin className="w-10 h-10 text-emerald-500 drop-shadow-md -translate-x-1/2 -translate-y-full hover:scale-110 transition-transform" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-white px-2 py-1 rounded text-xs font-bold shadow opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none -mt-12">
+                  Choluteca (Óptimo)
+                </div>
+              </div>
+
+              <div className="absolute top-[60%] left-[65%] group cursor-pointer z-10">
+                <MapPin className="w-10 h-10 text-amber-500 drop-shadow-md -translate-x-1/2 -translate-y-full hover:scale-110 transition-transform" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-white px-2 py-1 rounded text-xs font-bold shadow opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none -mt-12">
+                  Pavana (Mantenimiento)
+                </div>
+              </div>
+
+              <div className="absolute top-[45%] left-[30%] group cursor-pointer z-10">
+                <MapPin className="w-10 h-10 text-red-500 drop-shadow-md -translate-x-1/2 -translate-y-full hover:scale-110 transition-transform animate-bounce" />

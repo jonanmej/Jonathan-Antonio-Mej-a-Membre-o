@@ -1,0 +1,177 @@
+  if (isLoggedIn && activeModule === 'inventory') {
+    return (
+      <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+        {/* Navbar Superior Inventario */}
+        <header className="bg-amber-600 border-b border-amber-700 sticky top-0 z-20 shadow-md">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center h-16 gap-4">
+              <button 
+                onClick={() => setActiveModule('dashboard')}
+                className="text-amber-50 hover:text-white p-2 -ml-2 rounded-lg hover:bg-amber-500 transition-colors cursor-pointer flex-shrink-0"
+              >
+                <ArrowLeft className="w-6 h-6" />
+              </button>
+              <h1 className="font-bold text-xl text-white flex-1 truncate">Control de Inventarios</h1>
+              <div className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center text-white flex-shrink-0">
+                <Package className="w-4 h-4" />
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 py-6 flex flex-col gap-6">
+          
+          {/* Tarjetas de Resumen */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+              <div className="flex items-center gap-2 text-slate-500 mb-2">
+                <Box className="w-4 h-4" /> <span className="text-sm font-medium">Total Items</span>
+              </div>
+              <p className="text-2xl font-bold text-slate-900">1,248</p>
+            </div>
+            <div className="bg-white border border-red-200 rounded-xl p-4 shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-1 h-full bg-red-500"></div>
+              <div className="flex items-center gap-2 text-red-600 mb-2">
+                <AlertTriangle className="w-4 h-4" /> <span className="text-sm font-medium">Stock Bajo</span>
+              </div>
+              <p className="text-2xl font-bold text-slate-900">12</p>
+            </div>
+            <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hidden md:block">
+              <div className="flex items-center gap-2 text-slate-500 mb-2">
+                <Shield className="w-4 h-4 text-emerald-600" /> <span className="text-sm font-medium">PVSTOP (Unds)</span>
+              </div>
+              <p className="text-2xl font-bold text-slate-900">45</p>
+            </div>
+            <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm hidden md:block">
+              <div className="flex items-center gap-2 text-slate-500 mb-2">
+                <Droplets className="w-4 h-4 text-blue-500" /> <span className="text-sm font-medium">CHEMITEK (Lts)</span>
+              </div>
+              <p className="text-2xl font-bold text-slate-900">850</p>
+            </div>
+          </div>
+
+          {/* Filtros y Búsqueda */}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="relative w-full sm:max-w-md">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+              <input 
+                type="text" 
+                placeholder="Buscar repuesto, SKU o categoría..." 
+                className="w-full pl-10 pr-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:border-amber-500 transition-all shadow-sm"
+              />
+            </div>
+            
+            <div className="flex gap-2 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0 hide-scrollbar">
+              <button 
+                onClick={() => setInventoryFilter('all')}
+                className={`px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap transition-all cursor-pointer border ${inventoryFilter === 'all' ? 'bg-amber-50 border-amber-200 text-amber-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}
+              >
+                Todos
+              </button>
+              <button 
+                onClick={() => setInventoryFilter('solar')}
+                className={`px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap flex items-center gap-2 transition-all cursor-pointer border ${inventoryFilter === 'solar' ? 'bg-amber-50 border-amber-200 text-amber-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}
+              >
+                <Sun className="w-4 h-4" /> Solar (Químicos)
+              </button>
+              <button 
+                onClick={() => setInventoryFilter('hfo')}
+                className={`px-4 py-2 rounded-lg font-medium text-sm whitespace-nowrap flex items-center gap-2 transition-all cursor-pointer border ${inventoryFilter === 'hfo' ? 'bg-amber-50 border-amber-200 text-amber-700' : 'bg-white border-slate-200 text-slate-600 hover:bg-slate-50'}`}
+              >
+                <Wrench className="w-4 h-4" /> Repuestos HFO
+              </button>
+              <button className="px-4 py-2 bg-slate-900 text-white rounded-lg font-medium text-sm flex items-center gap-2 hover:bg-slate-800 transition-all cursor-pointer ml-auto sm:ml-2">
+                <Plus className="w-4 h-4" /> <span className="hidden sm:inline">Nuevo Item</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Lista de Inventario (Grid) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            
+            {/* Item 1 */}
+            {(inventoryFilter === 'all' || inventoryFilter === 'solar') && (
+              <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col">
+                <div className="flex justify-between items-start mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0">
+                    <Shield className="w-5 h-5" />
+                  </div>
+                  <span className="inline-flex items-center bg-emerald-50 text-emerald-700 px-2 py-1 rounded text-xs font-bold border border-emerald-200">
+                    Stock: 45 unds
+                  </span>
+                </div>
+                <div className="mb-4 flex-1">
+                  <p className="text-xs text-slate-400 font-medium mb-1">SKU: SOL-PVS-01 • Categoría: Seguridad</p>
+                  <h3 className="font-bold text-slate-900 text-lg leading-tight">PVSTOP (Extintor Solar)</h3>
+                  <p className="text-sm text-slate-500 mt-1 line-clamp-2">Líquido extintor especializado para apagar paneles solares en llamas o aislar energía.</p>
+                </div>
+                <div className="pt-3 border-t border-slate-100">
+                  <button className="w-full text-center text-sm font-medium text-amber-600 hover:text-amber-700 hover:bg-amber-50 py-2 rounded-lg transition-colors cursor-pointer">
+                    Gestionar Stock
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Item 2 */}
+            {(inventoryFilter === 'all' || inventoryFilter === 'hfo') && (
+              <div className="bg-white border border-red-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-16 h-16 bg-red-500 flex items-center justify-center translate-x-8 -translate-y-8 rotate-45">
+                  <span className="text-white text-[10px] font-bold mt-8">VACÍO</span>
+                </div>
+                <div className="flex justify-between items-start mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-600 shrink-0">
+                    <Wrench className="w-5 h-5" />
+                  </div>
+                  <span className="inline-flex items-center bg-red-50 text-red-700 px-2 py-1 rounded text-xs font-bold border border-red-200 mr-6">
+                    Stock: 0 unds
+                  </span>
+                </div>
+                <div className="mb-4 flex-1">
+                  <p className="text-xs text-slate-400 font-medium mb-1">SKU: HFO-FLT-88 • Categoría: Mecánica</p>
+                  <h3 className="font-bold text-slate-900 text-lg leading-tight">Filtro de Aceite Centrifugo</h3>
+                  <p className="text-sm text-slate-500 mt-1 line-clamp-2">Repuesto para motor de combustión HFO (Wartsila).</p>
+                </div>
+                <div className="pt-3 border-t border-slate-100">
+                  <button className="w-full text-center text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 py-2 rounded-lg transition-colors cursor-pointer flex items-center justify-center gap-2">
+                    <AlertTriangle className="w-4 h-4" /> Solicitar Compra
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Item 3 */}
+            {(inventoryFilter === 'all' || inventoryFilter === 'solar') && (
+              <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col">
+                <div className="flex justify-between items-start mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
+                    <Droplets className="w-5 h-5" />
+                  </div>
+                  <span className="inline-flex items-center bg-amber-50 text-amber-700 px-2 py-1 rounded text-xs font-bold border border-amber-200">
+                    Stock: 15 Lts
+                  </span>
+                </div>
+                <div className="mb-4 flex-1">
+                  <p className="text-xs text-slate-400 font-medium mb-1">SKU: SOL-CHM-05 • Categoría: Limpieza</p>
+                  <h3 className="font-bold text-slate-900 text-lg leading-tight">CHEMITEK Solar Wash</h3>
+                  <p className="text-sm text-slate-500 mt-1 line-clamp-2">Agente de limpieza avanzado para remover polvo y suciedad incrustada en paneles solares.</p>
+                </div>
+                <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                  <span className="text-xs text-amber-600 font-medium flex items-center gap-1">
+                    <AlertTriangle className="w-3 h-3" /> Punto de reorden cercano
+                  </span>
+                  <button className="text-sm font-medium text-amber-600 hover:text-amber-700 hover:bg-amber-50 px-3 py-1.5 rounded-lg transition-colors cursor-pointer">
+                    Gestionar
+                  </button>
+                </div>
+              </div>
+            )}
+
+          </div>
+        </main>
+      </div>
+    );
+  }
+
+  // Si el usuario está en el Módulo de Recursos Humanos
+  if (isLoggedIn && activeModule === 'hr') {

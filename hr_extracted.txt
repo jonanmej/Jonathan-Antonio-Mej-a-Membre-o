@@ -1,0 +1,245 @@
+  // Si el usuario está en el Módulo de Recursos Humanos
+  if (isLoggedIn && activeModule === 'hr') {
+    return (
+      <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
+        {/* Navbar Superior HR */}
+        <header className="bg-indigo-600 border-b border-indigo-700 sticky top-0 z-20 shadow-md">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center h-16 gap-4">
+              <button 
+                onClick={() => setActiveModule('dashboard')}
+                className="text-indigo-50 hover:text-white p-2 -ml-2 rounded-lg hover:bg-indigo-500 transition-colors cursor-pointer flex-shrink-0"
+              >
+                <ArrowLeft className="w-6 h-6" />
+              </button>
+              <h1 className="font-bold text-xl text-white flex-1 truncate">Recursos Humanos</h1>
+              <div className="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center text-white flex-shrink-0">
+                <Users className="w-4 h-4" />
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <main className="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 py-6 flex flex-col gap-6">
+          
+          {/* Tarjetas de Resumen KPI */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+              <div className="flex items-center gap-2 text-slate-500 mb-2">
+                <Users className="w-4 h-4" /> <span className="text-sm font-medium">Total Personal</span>
+              </div>
+              <p className="text-2xl font-bold text-slate-900">42</p>
+            </div>
+            <div className="bg-white border border-slate-200 rounded-xl p-4 shadow-sm">
+              <div className="flex items-center gap-2 text-indigo-600 mb-2">
+                <HardHat className="w-4 h-4" /> <span className="text-sm font-medium">En Campo Hoy</span>
+              </div>
+              <p className="text-2xl font-bold text-slate-900">28</p>
+            </div>
+            <div className="bg-white border border-emerald-200 rounded-xl p-4 shadow-sm hidden md:block">
+              <div className="flex items-center gap-2 text-emerald-600 mb-2">
+                <UserCheck className="w-4 h-4" /> <span className="text-sm font-medium">Check-ins Completos</span>
+              </div>
+              <p className="text-2xl font-bold text-slate-900">26/28</p>
+            </div>
+            <div className="bg-white border border-amber-200 rounded-xl p-4 shadow-sm hidden md:block">
+              <div className="flex items-center gap-2 text-amber-600 mb-2">
+                <UserX className="w-4 h-4" /> <span className="text-sm font-medium">Permisos / Descanso</span>
+              </div>
+              <p className="text-2xl font-bold text-slate-900">4</p>
+            </div>
+          </div>
+
+          {/* Filtros y Tabs */}
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div className="flex bg-slate-200/60 p-1 rounded-xl w-full sm:w-auto">
+              <button 
+                onClick={() => setHrTab('crews')}
+                className={`flex-1 sm:px-6 py-2 rounded-lg font-medium text-sm flex items-center justify-center gap-2 transition-all cursor-pointer ${hrTab === 'crews' ? 'bg-white text-indigo-700 shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
+              >
+                <HardHat className="w-4 h-4" /> Cuadrillas
+              </button>
+              <button 
+                onClick={() => setHrTab('timesheets')}
+                className={`flex-1 sm:px-6 py-2 rounded-lg font-medium text-sm flex items-center justify-center gap-2 transition-all cursor-pointer ${hrTab === 'timesheets' ? 'bg-white text-indigo-700 shadow-sm' : 'text-slate-600 hover:text-slate-900'}`}
+              >
+                <Clock className="w-4 h-4" /> Horarios y Check-in
+              </button>
+            </div>
+            
+            {hrTab === 'timesheets' && (
+              <div className="relative w-full sm:max-w-xs">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                <input 
+                  type="text" 
+                  placeholder="Buscar técnico..." 
+                  className="w-full pl-9 pr-4 py-2 bg-white border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all shadow-sm"
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Contenido: Cuadrillas */}
+          {hrTab === 'crews' && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Cuadrilla 1 */}
+              <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600">
+                      <Users className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-slate-900">Cuadrilla Solar Alfa</h3>
+                      <p className="text-xs text-slate-500">Limpieza y Mantenimiento FV</p>
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full text-xs font-bold border border-emerald-200">
+                    Activa
+                  </span>
+                </div>
+                <div className="bg-slate-50 rounded-xl p-3 mb-4 border border-slate-100">
+                  <p className="text-xs text-slate-500 mb-1">Destino Actual:</p>
+                  <p className="text-sm font-semibold text-slate-800 flex items-center gap-1">
+                    <MapPin className="w-4 h-4 text-slate-400" /> Planta Solar Choluteca
+                  </p>
+                </div>
+                <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                  <div className="flex -space-x-2">
+                    <div className="w-8 h-8 rounded-full bg-indigo-100 border-2 border-white flex items-center justify-center text-xs font-bold text-indigo-700">JP</div>
+                    <div className="w-8 h-8 rounded-full bg-blue-100 border-2 border-white flex items-center justify-center text-xs font-bold text-blue-700">MR</div>
+                    <div className="w-8 h-8 rounded-full bg-emerald-100 border-2 border-white flex items-center justify-center text-xs font-bold text-emerald-700">AL</div>
+                    <div className="w-8 h-8 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-xs font-bold text-slate-600">+1</div>
+                  </div>
+                  <button className="text-sm font-medium text-indigo-600 hover:text-indigo-700 cursor-pointer">
+                    Ver Detalles
+                  </button>
+                </div>
+              </div>
+
+              {/* Cuadrilla 2 */}
+              <div className="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow">
+                <div className="flex justify-between items-start mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-amber-50 flex items-center justify-center text-amber-600">
+                      <Wrench className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-slate-900">Especialistas HFO Sur</h3>
+                      <p className="text-xs text-slate-500">Mantenimiento de Motores</p>
+                    </div>
+                  </div>
+                  <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-700 px-2.5 py-1 rounded-full text-xs font-bold border border-emerald-200">
+                    Activa
+                  </span>
+                </div>
+                <div className="bg-slate-50 rounded-xl p-3 mb-4 border border-slate-100">
+                  <p className="text-xs text-slate-500 mb-1">Destino Actual:</p>
+                  <p className="text-sm font-semibold text-slate-800 flex items-center gap-1">
+                    <MapPin className="w-4 h-4 text-slate-400" /> Planta Pavana
+                  </p>
+                </div>
+                <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+                  <div className="flex -space-x-2">
+                    <div className="w-8 h-8 rounded-full bg-amber-100 border-2 border-white flex items-center justify-center text-xs font-bold text-amber-700">CG</div>
+                    <div className="w-8 h-8 rounded-full bg-red-100 border-2 border-white flex items-center justify-center text-xs font-bold text-red-700">FP</div>
+                  </div>
+                  <button className="text-sm font-medium text-indigo-600 hover:text-indigo-700 cursor-pointer">
+                    Ver Detalles
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Contenido: Horarios / Timesheets */}
+          {hrTab === 'timesheets' && (
+            <div className="bg-white border border-slate-200 rounded-2xl shadow-sm overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full text-left text-sm text-slate-600">
+                  <thead className="bg-slate-50 text-xs uppercase font-semibold text-slate-500 border-b border-slate-200">
+                    <tr>
+                      <th className="px-6 py-4">Técnico</th>
+                      <th className="px-6 py-4">Check-in</th>
+                      <th className="px-6 py-4">Check-out</th>
+                      <th className="px-6 py-4">Estado</th>
+                      <th className="px-6 py-4 text-right">Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100">
+                    {/* Fila 1 */}
+                    <tr className="hover:bg-slate-50 transition-colors">
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xs">JP</div>
+                          <div>
+                            <p className="font-semibold text-slate-900">Juan Pérez</p>
+                            <p className="text-xs text-slate-500">Sup. Cuadrilla Alfa</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 font-medium text-slate-900">07:02 AM</td>
+                      <td className="px-6 py-4 text-slate-400">--:--</td>
+                      <td className="px-6 py-4">
+                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-1 rounded-full">
+                          En Turno
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <button className="text-indigo-600 hover:text-indigo-800 font-medium text-xs underline cursor-pointer">Ver Mapa</button>
+                      </td>
+                    </tr>
+                    {/* Fila 2 */}
+                    <tr className="hover:bg-slate-50 transition-colors">
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs">MR</div>
+                          <div>
+                            <p className="font-semibold text-slate-900">María Rodríguez</p>
+                            <p className="text-xs text-slate-500">Técnico Solar</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 font-medium text-slate-900">07:05 AM</td>
+                      <td className="px-6 py-4 text-slate-400">--:--</td>
+                      <td className="px-6 py-4">
+                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-1 rounded-full">
+                          En Turno
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <button className="text-indigo-600 hover:text-indigo-800 font-medium text-xs underline cursor-pointer">Ver Mapa</button>
+                      </td>
+                    </tr>
+                    {/* Fila 3 */}
+                    <tr className="hover:bg-slate-50 transition-colors">
+                      <td className="px-6 py-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-600 flex items-center justify-center font-bold text-xs">ER</div>
+                          <div>
+                            <p className="font-semibold text-slate-900">Enrique Ramos</p>
+                            <p className="text-xs text-slate-500">Técnico HFO</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 text-slate-400">Sin marcar</td>
+                      <td className="px-6 py-4 text-slate-400">--:--</td>
+                      <td className="px-6 py-4">
+                        <span className="inline-flex items-center gap-1 text-xs font-semibold text-red-700 bg-red-50 border border-red-200 px-2 py-1 rounded-full">
+                          Ausente / Retraso
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-right">
+                        <button className="text-indigo-600 hover:text-indigo-800 font-medium text-xs underline cursor-pointer">Contactar</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
+        </main>
+      </div>
+    );
+  }

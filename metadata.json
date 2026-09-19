@@ -1,0 +1,11 @@
+{
+  "name": "EA Service Connect",
+  "description": "Sistema integral ERP y FSM para operaciones de energía solar, HFO y ventas.",
+  "requestFramePermissions": [
+    "geolocation",
+    "camera"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
